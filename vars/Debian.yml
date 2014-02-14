@@ -2,3 +2,5 @@ Debian_server_pkgs:
   - postgresql-client-9.1
   - postgresql-9.1
   - postgresql-contrib
+  - python-psycopg2
+

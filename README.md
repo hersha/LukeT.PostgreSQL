@@ -31,6 +31,7 @@ RedHat_server_pkgs:
   - postgresql
   - postgresql-server
   - postgresql-devel
+  - python-psycopg2
 
 pg_data_dir: '/var/lib/pgsql/data'
 ```
@@ -42,6 +43,7 @@ Debian_server_pkgs:
   - postgresql-client-9.1
   - postgresql-9.1
   - postgresql-contrib
+  - python-psycopg2
 ```
 
 Dependencies
