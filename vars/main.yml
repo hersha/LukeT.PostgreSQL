@@ -1,0 +1,9 @@
+---
+# vars file for LukeT.PostgreSQL
+# 
+
+auth_network: "192.168.42.0/32"
+listen_address: "listen_addresses = 'localhost'"
+pgsql_local_auth: "password"
+pgsql_net_auth: "password"
+

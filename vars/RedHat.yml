@@ -1,0 +1,6 @@
+RedHat_server_pkgs:
+  - postgresql
+  - postgresql-server
+  - postgresql-devel
+
+pg_data_dir: '/var/lib/pgsql/data'

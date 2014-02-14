@@ -1,0 +1,36 @@
+---
+# tasks file for LukeT.PostgreSQL
+#  
+#
+#- hosts: postgres
+#  remote_user: root
+#  tasks:
+
+  - name: OS specific varibles
+    include_vars: "{{ ansible_os_family }}.yml"
+
+  - name: Install PostgreSQL Server packages for RedHat/CentOS
+    yum: name={{ item }} state=installed
+    with_items: RedHat_server_pkgs
+    when: ansible_os_family == 'RedHat'
+
+  - name: Install PostgreSQL server packages for Ubuntu/Debian
+    apt: name={{ item }} state=installed update_cache=yes
+    with_items: Debian_server_pkgs
+    when: ansible_os_family == 'Debian'
+
+  - name: Init DB
+    command: service postgresql initdb
+    when: ansible_os_family == 'RedHat'
+
+  - name: Start Postrgres server at boot 
+    service: name=postgresql enabled=yes state=started
+
+  - name: Configure connections and PG_DATA for RedHat/CentOS
+    template: src={{ item }}.j2 dest={{ pg_data_dir }}/{{ item }} owner=postgres
+    with_items:
+    - postgresql.conf
+    - pg_hba.conf
+    when: ansible_os_family == 'RedHat'
+    notify: 
+      - restart postgresql
