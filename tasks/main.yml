@@ -2,9 +2,6 @@
 # tasks file for LukeT.PostgreSQL
 #  
 #
-#- hosts: postgres
-#  remote_user: root
-#  tasks:
 
   - name: OS specific varibles
     include_vars: "{{ ansible_os_family }}.yml"
